@@ -1,0 +1,22 @@
+{
+  "name": "Sqooya",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/rest": "^1.5.0",
+    "@napi-rs/canvas": "^0.1.30",
+    "chalk": "^5.2.0",
+    "discord-api-types": "^0.37.24",
+    "discord.js": "^14.7.1",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0",
+    "parse-ms": "^2.1.0"
+  }
+}
