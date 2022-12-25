@@ -1,6 +1,8 @@
 const { connect, connection } = require('mongoose');
 
-async function connDatabase(mongoUrl) {
+let url = "mongodb+srv://sqooya:zxc228zxc@cluster0.rnjkahc.mongodb.net/?retryWrites=true&w=majority";
+
+async function connDatabase(url) {
     connect(mongoUrl, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
