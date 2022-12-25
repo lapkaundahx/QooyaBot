@@ -1,7 +1,7 @@
 const { connect, connection } = require('mongoose');
 
-async function connDatabase(mongoUrl) {
-    connect(mongoUrl, {
+async function connDatabase() {
+    connect('mongodb+srv://sqooya:zxc228zxc@cluster0.rnjkahc.mongodb.net/?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });

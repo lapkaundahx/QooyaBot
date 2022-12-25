@@ -52,7 +52,7 @@ client.on('warn', async (message) => {
 let token = "MTA1MjMyODAwMTYwNzU4NTg0Ng.G-8XGc.VEhWlgtEtSkeXrzjTIP022DwwiPM_PMgzA-z6g";
 
 client.login(token).then(() => {
-  connDatabase("mongodb+srv://sqooya:zxc228zxc@cluster0.rnjkahc.mongodb.net/?retryWrites=true&w=majority");
+  connDatabase();
   loadEvents(client);
   loadCommands(client);
 });
