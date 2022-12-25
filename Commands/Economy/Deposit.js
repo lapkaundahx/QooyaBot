@@ -5,65 +5,66 @@ const { addMoney } = require('../../Util/Functions/Economy');
 module.exports = {
   name: 'deposit',
   aliases: ['dep'],
-  description: "Check the bot's ping!",
-    /**
-     * 
-     * @param {Client} client 
-     * @param {Message} message 
-     * @param {String[]} args 
-     */
-    async execute(client, message, args) {
-      const { guildId } = message;
+  description: 'Вкласти свої гроші в банк.',
+  category: 'Економіка',
+  /**
+   * 
+   * @param {Client} client 
+   * @param {Message} message 
+   * @param {String[]} args 
+   */
+  async execute(client, message, args) {
+    const { guildId } = message;
 
-      let amount = parseInt(args[0]);
+    let amount = parseInt(args[0]);
 
-      let embederror3 = new EmbedBuilder()
-        .setDescription(`**Ви забули ввести суму**\n**!deposit сумма**`)
-        .setColor(`#987bfe`)
+    let embederror3 = new EmbedBuilder()
+      .setDescription(`**Ви забули ввести суму**\n**!deposit сумма**`)
+      .setColor(`#987bfe`)
 
-      if (!amount) return message.author.send({ embeds: [embederror3] })
-        .then(message.delete());
+    if (!amount) return message.author.send({ embeds: [embederror3] })
+      .then(message.delete());
 
-      let embederror5 = new EmbedBuilder()
-        .setDescription(`**Не можна переводити таке число**\n**!deposit сумма**`)
-        .setColor(`#987bfe`)
-      
-      if (amount <= 0) return message.author.send({ embeds: [embederror5] })
-        .then(message.delete());
+    let embederror5 = new EmbedBuilder()
+      .setDescription(`**Не можна переводити таке число**\n**!deposit сумма**`)
+      .setColor(`#987bfe`)
 
-      let embederror6 = new EmbedBuilder()
-        .setDescription(`**На вашому рахунку недостатньо монет**\n**!deposit сумма**`)
-        .setColor(`#987bfe`)
+    if (amount <= 0) return message.author.send({ embeds: [embederror5] })
+      .then(message.delete());
 
-      let data = await Economy.findOne({ Guild: guildId, User: message.author.id });
+    let embederror6 = new EmbedBuilder()
+      .setDescription(`**На вашому рахунку недостатньо монет**\n**!deposit сумма**`)
+      .setColor(`#987bfe`)
 
-      if(!data) {
-        let embed = new EmbedBuilder()
-          .setColor(`#987bfe`)
-          .setDescription(`**У користувача немає ніяких грошей**`)
+    let data = await Economy.findOne({ Guild: guildId, User: message.author.id });
 
-        new Economy({
-          Guild: guildId,
-          User: message.author.id,
-          Money: 0,
-          Bank: 0
-        }).save();
-
-        return message.author.send({ embeds: [embed] })
-          .then(message.delete());
-      }
-
-      if(data.Money < amount) return message.author.send({ embeds: [embederror6] })
-          .then(message.delete());
-
-      data.Money -= amount;
-      data.Bank += amount;
-      data.save();
-
+    if (!data) {
       let embed = new EmbedBuilder()
         .setColor(`#987bfe`)
-        .setDescription(`**${message.author} задепозитив \`\`${amount}\`\` монет**`)
+        .setDescription(`**У користувача немає ніяких грошей**`)
 
-      return message.reply({ embeds: [embed] });
+      new Economy({
+        Guild: guildId,
+        User: message.author.id,
+        Money: 0,
+        Bank: 0
+      }).save();
+
+      return message.author.send({ embeds: [embed] })
+        .then(message.delete());
     }
+
+    if (data.Money < amount) return message.author.send({ embeds: [embederror6] })
+      .then(message.delete());
+
+    data.Money -= amount;
+    data.Bank += amount;
+    data.save();
+
+    let embed = new EmbedBuilder()
+      .setColor(`#987bfe`)
+      .setDescription(`**${message.author} задепозитив \`\`${amount}\`\` монет**`)
+
+    return message.reply({ embeds: [embed] });
+  }
 }

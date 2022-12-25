@@ -4,8 +4,9 @@ const { addMoney } = require('../../Util/Functions/Economy');
 module.exports = {
   name: 'addmoney',
   aliases: ['am'],
-  description: "Check the bot's ping!",
+  description: 'Нарахувати монети учаснику',
   permissions: [PermissionFlagsBits.Administrator],
+  category: 'Адміністрація',
   /**
    * 
    * @param {Client} client 

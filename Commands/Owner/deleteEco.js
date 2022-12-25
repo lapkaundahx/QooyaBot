@@ -3,8 +3,10 @@ const Economy = require('../../Database/Models/Economy');
 
 module.exports = {
   name: 'cleareco',
-  description: "Check the bot's ping!",
+  aliases: ['ce'],
+  description: 'Повністю очистити економіку сервера.',
   permissions: [PermissionFlagsBits.Administrator],
+  category: 'Адміністрація',
   /**
    * 
    * @param {Client} client 

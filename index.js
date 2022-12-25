@@ -34,6 +34,22 @@ const client = new Client({
 client.commands = new Collection();
 client.aliases = new Collection();
 
+process.on('unhandledRejection', (error) => {
+  console.log(error);
+});
+
+process.on('uncaughtException', (error) => {
+  console.log(error);
+});
+
+process.on('uncaughtExceptionMonitor', (error) => {
+  console.log(error);
+});
+
+client.on('warn', async (message) => {
+  console.log(`[WARN] ${message}`);
+});
+
 client.login(process.env.TOKEN).then(() => {
   keepAlive();
   connDatabase(process.env.MONGO);

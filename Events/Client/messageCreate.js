@@ -1,4 +1,5 @@
 const { Client, Events, Message, EmbedBuilder } = require('discord.js');
+let MessageShema = require('../../Database/Models/Messages');
 
 module.exports = {
   name: Events.MessageCreate,
@@ -41,5 +42,18 @@ module.exports = {
 
       await command.execute(client, message, args);
     }
+
+    MessageShema.findOne({ Guild: message.guild.id, User: message.author.id }, async (err, data) => {
+      if (data) {
+        data.Messages += 1;
+        data.save();
+      } else {
+        new MessageShema({
+          Guild: message.guild.id,
+          User: message.author.id,
+          Messages: 1,
+        }).save();
+      }
+    })
   }
 };

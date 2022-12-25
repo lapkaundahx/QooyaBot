@@ -10,6 +10,7 @@ module.exports = {
      * @param {Client} client 
      */
     async execute (member, client) {
+      if (member.guild.id !== '928405729549877268') return;
       removeUser(client, member.guild, member.user);
     }
 };

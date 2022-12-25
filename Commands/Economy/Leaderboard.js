@@ -4,7 +4,8 @@ const Economy = require('../../Database/Models/Economy');
 module.exports = {
   name: 'leaderboard',
   aliases: ['lb'],
-  description: "Check the bot's ping!",
+  description: 'Подивитися топ учасників по монетам/банку.',
+  category: 'Економіка',
   /**
    * 
    * @param {Client} client 
