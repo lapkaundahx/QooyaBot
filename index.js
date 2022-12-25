@@ -50,9 +50,10 @@ client.on('warn', async (message) => {
 });
 
 let token = "MTA1MjMyODAwMTYwNzU4NTg0Ng.G-8XGc.VEhWlgtEtSkeXrzjTIP022DwwiPM_PMgzA-z6g";
+let mongoUrl = "mongodb+srv://sqooya:zxc228zxc@cluster0.rnjkahc.mongodb.net/?retryWrites=true&w=majority";
 
 client.login(token).then(() => {
-  connDatabase(process.env.MONGO);
+  connDatabase(mongoUrl);
   loadEvents(client);
   loadCommands(client);
 });
